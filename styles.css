@@ -1,0 +1,350 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #181818;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+#video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+#loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  z-index: 1000;
+}
+
+#loading-video {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ object-fit: cover;
+ z-index: -1;
+}
+
+#skip-button {
+ font-family: 'Revalingion', sans-serif;
+ color: #ffffff;
+ position: absolute;
+ bottom: 50px;
+ right: 90px;
+ background-color: rgba(0, 0, 0, 0);
+ border: none;
+ border-radius: 10px;
+ padding: 5px 10px;
+ font-size: 30px;
+ cursor: pointer;
+ background-image: url('URL_IMAGE'); 
+ background-size: cover;
+ transform: skew(-20deg); 
+ transform-origin: bottom right; 
+ transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+}
+
+#skip-button:hover {
+transform: skew(-20deg) translateX(10px); 
+filter: contrast(150%) saturate(150%) hue-rotate(10deg);
+}
+
+#loading-logo {
+  width: 10000px;
+  height: 800px;
+  margin-bottom: 20px;
+}
+
+#menu {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  left: 50px;
+  top: 120px;
+}
+
+.menu-container {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 20px;
+  color: #ffffff;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+  text-align: left;
+}
+
+.menu-image {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.menu-item {
+  font-size: 62px; 
+  font-family: 'Revalingion', sans-serif; 
+  margin: 10px 0;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-item:hover {
+  color: #ffee00;
+  transform: scale(1.1);
+}
+
+#news-feed {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  max-width: 400px; 
+  overflow: hidden; 
+}
+
+#news-image {
+  width: 80%;
+  height: 80%; 
+  object-fit: cover;
+  border: 2px solid #0000008c;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.news-content {
+  width: 350px;
+  margin-top: 10px;
+  background-color: #ffffffe0;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0);
+  transition: transform 0.3s ease;
+  display: none;
+  max-height: 350px; 
+  overflow: hidden; 
+}
+
+.news-content.active {
+  display: block; 
+}
+
+.news-content:hover {
+  transform: translateY(-5px);
+}
+
+.news-thumbnail img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+}
+
+.news-details {
+  padding: 10px;
+  color:#000000
+}
+
+.news-content.active {
+  display: block;
+}
+
+.bullets {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.news-title {
+  font-size: 18px;
+  margin: 0;
+  font-family: 'Revalingion', sans-serif;
+  color:#000000
+}
+
+.news-description {
+  margin: 5px 0;
+}
+
+.news-text {
+  text-align: center;
+  font-size: 16px;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.bullet {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #bebebe;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.bullet.active {
+  background-color: #ffee00;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
+}
+
+.cyberpunk-close {
+  position: absolute;
+  bottom: 45px;
+  right: 20px;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cyberpunk-close:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.close-button {
+  font-size: 24px;
+  color: #ffee00;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: color 0.3s ease-in-out; 
+}
+
+.close-button:focus {
+  outline: none;
+}
+
+.close-button:hover {
+  color: #fffb00; 
+}
+
+@font-face {
+  font-family: 'Revalingion';
+  src: url('assets/Revalingion.ttf') format('truetype'); 
+  font-weight: normal;
+  font-style: normal;
+}
+
+.popup-content::-webkit-scrollbar {
+  width: 9px; 
+  background-color: rgba(0, 0, 0, 0); 
+}
+
+.popup-content::-webkit-scrollbar-thumb {
+  background-color: #ff7300; 
+  border-radius: 5px; 
+}
+
+.popup-content::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0); 
+}
+
+#store-popup {
+  position: fixed;
+  background-image: url('');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(255, 255, 255);
+  padding: 0px;
+  width: 96%; 
+  max-height: 96%;
+  overflow-y: hidden; 
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 0 0px rgba(12, 12, 12, 0);
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+}
+
+#store-popup iframe {
+  width: 100%;
+  height: 100%;
+  border: 3px solid #ffffff00;
+  border-radius: 10px;
+}
+
+#close-store-popup {
+  width: 30px; 
+  height: 30px; 
+  position: absolute;
+  top: 13px; 
+  right: 26px; 
+  cursor: pointer;
+}
+
+.news-image-hidden {
+  display: none;
+}
+
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#close-store-popup-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  background-color: transparent; /* Para remover o fundo padrão do elemento */
+}
+
+#close-store-popup-button img {
+  width: 20px; /* Ajuste o tamanho conforme necessário */
+}
+
+
+
+

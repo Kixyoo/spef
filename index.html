@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Misskixy</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+</head>
+
+<body>
+  <video id="video-background" autoplay muted loop>
+    <source src="assets/bgs1.mp4" type="video/mp4">
+  </video>
+  <audio id="background-audio" autoplay loop preload="auto">
+    <source src="LINK_AUDIO" type="audio/mpeg">
+  </audio>
+
+  <div id="loading-screen">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <video id="loading-video" autoplay muted loop>
+        <source src="assets/bgs.mp4" type="video/mp4">
+      </video>
+      <p style="margin-top: 10px;"></p>
+      <audio id="loading-audio" autoplay loop preload="auto">
+        <source src="https://github.com/Kixyoo/sdssds/raw/main/PetRUalitY-%20Cyborg%20Pulse%20(2020%20Epic%20Electronic%20Futuristic%20Sci-Fi%20Action).mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+
+  <div id="version-text" style="position: fixed; top: 0; left: 9px; background-color: rgba(0, 0, 0, 0); padding: 5px; color: white; font-size: 12px; z-index: 999;">Versão 2.5.1-11694</div>
+
+  <div id="menu">
+    <div class="menu-container">
+      <img class="menu-image" src="./assets/logo.png" alt="">
+      <div class="menu-item" data-action="start">Jogar</div>
+      <div class="menu-item" data-action="options">Opções</div>
+      <div class="menu-item" data-action="loja">Patchnotes</div>
+      <div class="menu-item" data-action="credits">Trailer</div>
+    </div>
+  </div>
+
+  <div id="news-feed">
+    <div class="news-content active">
+      <div class="news-thumbnail">
+        <img src="https://res.cloudinary.com/shotgun/image/upload/v1705508122/production/artworks/TOULOUSE_1920_1080_qka5qi.png" alt="Notícia 1">
+      </div>
+      <div class="news-details">
+        <h3 class="news-title">Suas noticias em novo formato</h3>
+        <p class="news-description">"Bem-vindo ao nosso feed de notícias! Fique por dentro das últimas atualizações e informações em tempo real.</p>
+      </div>
+    </div>
+    <div class="news-content">
+      <div class="news-thumbnail">
+        <img src="https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1708519960/production/artworks/0329_16-9__2024_n8beao" alt="Notícia 2">
+      </div>
+      <div class="news-details">
+        <h3 class="news-title">Spellstrike beta em breve</h3>
+        <p class="news-description">"Participe do Spellstrike beta. Teste e se divirta e econtribua com feedback para aprimorarmos juntos."</p>
+      </div>
+    </div>
+    <div class="news-content">
+      <div class="news-thumbnail">
+        <img src="https://res.cloudinary.com/shotgun/image/upload/ar_16:9,c_limit,f_auto,fl_lossy,q_auto,w_1280/v1707393548/production/artworks/shotgun_cumwrd" alt="Notícia 3">
+      </div>
+      <div class="news-details">
+        <h3 class="news-title">Manutenção Programada</h3>
+        <p class="news-description">Atenção! Manutenção programada hoje às 16h. Previsão de volta em 3 horas. Desculpe-nos pelo inconveniente.</p>
+      </div>
+    </div>
+    <div class="bullets">
+      <span class="bullet active" onclick="changeNews(0)"></span>
+      <span class="bullet" onclick="changeNews(1)"></span>
+      <span class="bullet" onclick="changeNews(2)"></span>
+    </div>
+  </div>
+  <img id="bottom-left-image" src="assets/sa (28).png" alt="Image Description" style="position: fixed; bottom: 18px; left: 30px; width: 100px; height: auto; margin: 20px;">
+
+  <div id="store-popup" class="popup">
+    <iframe id="store-iframe" src="X" frameborder="0"></iframe>
+    <img src="assets/fechar.png" alt="Fechar" id="close-store-popup">
+  </div>
+
+  <div id="credit-popup" class="popup">
+    <div class="popup-content">
+      <h2>CREDITOS</h2>
+      <div class="patch-note">
+        <h3>Melhorias de Jogabilidade</h3>
+        <p>• Adicionado novo script de mecanica •</p>
+        <p>• Corrigido o bug do cinto que prendia o player no carro •</p>
+      </div>
+      <div class="patch-note">
+        <h3>Novos Recursos</h3>
+        <p>• Introduzido o modo multiversus •</p>
+        <p>©NRP GROUP</p>
+      </div>
+      <a href="#" id="close-credit-popup"></a>
+    </div>
+  </div>
+
+  <script>
+    let startGameClicked = false;
+    let currentNewsIndex = 0;
+
+    function changeNews(index) {
+      const newsItems = document.querySelectorAll('.news-content');
+      const bullets = document.querySelectorAll('.bullet');
+
+      newsItems.forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+          bullets[i].classList.add('active');
+        } else {
+          item.classList.remove('active');
+          bullets[i].classList.remove('active');
+        }
+      });
+
+      currentNewsIndex = index;
+    }
+
+    const newsContents = document.querySelectorAll('.news-content');
+
+    newsContents.forEach((news, index) => {
+      news.addEventListener('click', () => {
+        console.log(`Notícia ${index + 1} clicada`);
+      });
+    });
+
+    const storeMenuItem = document.querySelector('.menu-item[data-action="loja"]');
+    const storePopup = document.getElementById('store-popup');
+    const storeIframe = document.getElementById('store-iframe');
+    const closeStorePopupButton = document.getElementById('close-store-popup');
+    closeStorePopupButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      closeStorePopup();
+    });
+
+    storeMenuItem.addEventListener('click', function () {
+      openStorePopup('dist/index.html');
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeStorePopup();
+      }
+    });
+
+    function openStorePopup(url) {
+      storeIframe.src = url;
+      storePopup.style.display = 'block';
+    }
+
+    function closeStorePopup() {
+      storeIframe.src = 'X';
+      storePopup.style.display = 'none';
+    }
+
+    let newsChangeTimer;
+
+    function autoChangeNews() {
+      const newsContents = document.querySelectorAll('.news-content');
+      const nextNewsIndex = (currentNewsIndex + 1) % newsContents.length;
+
+      changeNews(nextNewsIndex);
+
+      clearTimeout(newsChangeTimer);
+
+      newsChangeTimer = setTimeout(autoChangeNews, 25000);
+    }
+
+    function handleStartGameClick() {
+      startGameClicked = true;
+    }
+
+    // Remova ou ajuste esta função conforme necessário
+    function handlePageClose(event) {
+      if (!startGameClicked) {
+        // event.preventDefault();
+        // event.returnValue = '';
+      }
+    }
+
+    function openGtaPauseMenu() {
+      console.log("Opening GTA V pause menu...");
+    }
+
+    function openStore() {
+      const storePage = document.querySelector('.store-page');
+      storePage.style.display = 'flex';
+      setTimeout(function () {
+        storePage.style.opacity = 1;
+      }, 100);
+    }
+
+    function closeStore() {
+      const storePage = document.querySelector('.store-page');
+      storePage.style.opacity = 0;
+      setTimeout(function () {
+        storePage.style.display = 'none';
+      }, 1000);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const loadingVideo = document.getElementById("loading-video");
+      const loadingAudio = document.getElementById("loading-audio");
+      const loadingScreen = document.getElementById("loading-screen");
+      const menu = document.getElementById("menu");
+      const newsFeed = document.getElementById("news-feed");
+
+      loadingVideo.addEventListener("ended", function () {
+        showContent();
+      });
+
+      loadingAudio.addEventListener("canplay", function () {
+        loadingVideo.play();
+        loadingAudio.play();
+      });
+
+      function showContent() {
+        loadingScreen.style.opacity = 0;
+        setTimeout(function () {
+          loadingScreen.style.display = "none";
+          menu.style.display = "block";
+          newsFeed.style.display = "block";
+          setTimeout(function () {
+            menu.style.opacity = 1;
+            newsFeed.style.opacity = 1;
+          }, 100);
+        }, 1000);
+      }
+
+      const startButton = document.querySelector('.menu-item[data-action="start"]');
+      startButton.addEventListener('click', function () {
+        window.close(); // Fecha a janela atual
+      });
+
+      setInterval(autoChangeNews, 10000);
+
+      // Remova ou ajuste conforme necessário
+      window.addEventListener('beforeunload', handlePageClose);
+
+      const creditMenuItem = document.querySelector('.menu-item[data-action="credits"]');
+      const closePopupButton = document.getElementById('close-credit-popup');
+
+      creditMenuItem.addEventListener('click', function () {
+        openStorePopup('micro/index3.html');
+        creditPopup.style.display = 'flex';
+      });
+
+      closePopupButton.addEventListener('click', function () {
+        creditPopup.style.display = 'none';
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          creditPopup.style.display = 'none';
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeStore();
+        }
+      });
+
+      const optionsMenuItem = document.querySelector('.menu-item[data-action="options"]');
+      optionsMenuItem.addEventListener('click', openGtaPauseMenu);
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          // closePopup(configPopup);
+          // closePopup(creditPopup);
+        }
+
+        if (event.key === " ") {
+          event.preventDefault();
+          loadingVideo.pause();
+          loadingAudio.pause();
+          showContent();
+        }
+      });
+
+      const storeMenuItem = document.querySelector('.menu-item[data-action="loja"]');
+      storeMenuItem.addEventListener('click', openStore);
+
+      setTimeout(function () {
+        const skipButton = document.createElement("button");
+        skipButton.id = "skip-button";
+        skipButton.innerHTML = 'PRESSIONE <img src="assets/barr.png" alt="Spacebar Icon"> PARA PULAR';
+        skipButton.addEventListener("click", function () {
+          loadingVideo.pause();
+          loadingAudio.pause();
+          showContent();
+        });
+        loadingScreen.appendChild(skipButton);
+      }, 14000);
+    });
+  </script>
+</body>
+
+</html>
